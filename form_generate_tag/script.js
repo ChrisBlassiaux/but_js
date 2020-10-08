@@ -83,8 +83,9 @@ function selectElement () {
 }
 
 
-// ID DOIT ÊTRE UNIQUE
-
+// // ID DOIT ÊTRE UNIQUE
+// mettre les options dans une variable, si y a déjà une class, 
+// ne pas créer la balise
 
 //J'ai ajouté en HTML LE -1
 
