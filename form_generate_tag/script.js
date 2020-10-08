@@ -10,18 +10,16 @@ let setElementHtml = function (tag, parent, backgroundColor, id, content) {
   element.style.backgroundColor = backgroundColor;
   element.id = id;
 
-  console.log(parent);
   if (typeof parent === 'string') {
-    document.querySelector(parent).appendChild(element);
+    document.getElementById(parent).appendChild(element); // ici y a une erreur à cause du parent, je n'ai pas l'id d'option
   } else {
     parent.appendChild(element);
   }
-
 }
 
 // 
 let putElementInSelectParent = function (tag, id) {
-  let containerParent = document.getElementById('formParent');
+  let containerParent = document.getElementById('formParent'); //what 
   let option = document.createElement('option');
   option.innerHTML = tag;
   option.id = id;
@@ -38,17 +36,9 @@ form.addEventListener('submit', (event) => {
   let formContent = form.elements[4].value;
   let formParent = '';
 
-  //il faut socker l'id du option et faire l'element par rapport à ça
-  //donc savoir quel option a été validé 
-  // trouver le parent et go ! 
-
+  //mettre setAttr selected sur celui qui est selectionné 
   if (parentInCanvaSelected == '') {
-    formParent = form.elements[1].value;
-  
-    // PROBLEME DE .canva div 
-    // parce que le tag seul c'est pas assé, il faut l'id
-    // il faut mettre l'id sur l'option aussi
-    // et se servir de l'id pour trouver le parent
+    formParent = form.elements[1].querySelector('option[selected]').id + '-1'; //il retourne l'id du select parent // id de l'option en cours ici ?  L'element créé ce met dans le parent d'option
   } else {
     formParent = parentInCanvaSelected;
   }
@@ -56,8 +46,6 @@ form.addEventListener('submit', (event) => {
   setElementHtml(formTag, formParent, formBackgroundColor, formId, formContent);
 
   putElementInSelectParent(formTag, formId);
-
-  // stopPropagation(); 
 
   // écouteurs dans parents dans le canva
   let parentsInCanva = document.querySelectorAll('.canva div, .canva span, .canva a');
@@ -72,6 +60,11 @@ function selectElement () {
   parentInCanvaSelected = this;
   this.style.border = '2px solid #f0ad4e';
 
+  let selected = document.querySelector('option[selected]');
+  selected.removeAttribute('selected');
+  let goSelected = document.getElementById(this.id);
+  goSelected.setAttribute('selected', 'selected');
+
   //deselectionner avec un click exterieur
   let canva = document.querySelector('.canva');
 
@@ -82,33 +75,22 @@ function selectElement () {
       parentsInCanva[i].style.border = 'none';
     }
     parentInCanvaSelected = '';
+
+    let selected = document.querySelector('option[selected]');
+    selected.removeAttribute('selected');
+    document.querySelector('#canva').setAttribute('selected', 'selected');
   }, true);
 }
+
+
+// ID DOIT ÊTRE UNIQUE
+
+
+//J'ai ajouté en HTML LE -1
+
+
 //voir bouillonement
 
-// METTRE SELECTED SUR LE OPTION EN COURS PAR RAPPORT AU CANVA
 
 
-
-
-
-
-
-// ajouter un écouteur pour chaque element du canva
-// si l'element 
-
-
-// avec la fonction et add if this. quelque chose
-//choper l'id et le rechercher avec l'id => # + idtrouvé 
-
-
-    // j'ai l'id maintenant utilise le pour
-            //mettre un focus sur l'element
-            //L'utiliser en tant que parent
-
-
-
-/// ID UNIQUE !!!
-
-
-
+//PROBLEME DE SELECTION : les parents se selectionne
