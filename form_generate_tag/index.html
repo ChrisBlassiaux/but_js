@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FormGenaration</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm">
+          <form>
+            <div class="form-group">
+              <label for="exampleFormControlSelect1">Type de balise</label>
+              <select class="form-control" id="exampleFormControlSelect1">
+                <option>DIV</option>
+                <option>SPAN</option>
+                <option>IMG</option>
+                <option>A</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlSelect2">Selectionner un parent</label>
+              <select multiple class="form-control" id="exampleFormControlSelect2" placeholder="Mon contenu texte">
+                <option>span</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlInput1">border-color:</label>
+              <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="red">
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlInput1">id</label>
+              <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="mon-id">
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlTextarea1">Contenu Texte</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"  placeholder="mon contenu texte"></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="col-sm">
+          <div class="canva card">
+            Le canva
+          </div>
+        </div>
+      </div>
+
+     
+    </div>
+  </body>
+</html>
