@@ -21,7 +21,7 @@ let setElementHtml = function (tag, parent, backgroundColor, id, content) {
 let putElementInSelectParent = function (tag, id) {
   let containerParent = document.getElementById('formParent'); //what 
   let option = document.createElement('option');
-  option.innerHTML = tag;
+  option.innerHTML = tag + " - id:'" + id + "'";
   option.id = id;
   containerParent.appendChild(option);
 }
@@ -43,9 +43,34 @@ form.addEventListener('submit', (event) => {
     formParent = parentInCanvaSelected;
   }
 
-  setElementHtml(formTag, formParent, formBackgroundColor, formId, formContent);
+  // si l'id existe déjà
+  let ids = [];
+  let tags = document.querySelectorAll('.canva div, .canva span, .canva a, #canva option');
+  let idExist = false;
 
-  putElementInSelectParent(formTag, formId);
+  for (let i = 0; i < tags.length; i++) {
+    ids.push(tags[i].id);
+  }
+
+  for (let id of ids) {
+    if (id == formId) {
+      idExist = true;
+    }
+  }
+  
+  if (idExist == false) {
+    // Enlever si y a une alerte ! 
+    let alert = document.querySelector('.alert');
+    alert.style.display = 'none';
+
+    setElementHtml(formTag, formParent, formBackgroundColor, formId, formContent);
+
+    putElementInSelectParent(formTag, formId);
+  } else {
+    // mettre une alerte ! 
+    let alert = document.querySelector('.alert');
+    alert.style.display = 'block';
+  }
 
   // écouteurs dans parents dans le canva
   let parentsInCanva = document.querySelectorAll('.canva div, .canva span, .canva a');
@@ -54,7 +79,6 @@ form.addEventListener('submit', (event) => {
     parentsInCanva[i].addEventListener('click', selectElement);
   }
 });
-
 
 function selectElement () {
   parentInCanvaSelected = this;
@@ -81,13 +105,6 @@ function selectElement () {
     document.querySelector('#canva').setAttribute('selected', 'selected');
   }, true);
 }
-
-
-// // ID DOIT ÊTRE UNIQUE
-// mettre les options dans une variable, si y a déjà une class, 
-// ne pas créer la balise
-
-//J'ai ajouté en HTML LE -1
 
 
 //voir bouillonement
