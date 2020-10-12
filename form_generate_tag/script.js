@@ -11,7 +11,7 @@ let setElementHtml = function (tag, parent, backgroundColor, id, content) {
   element.id = id;
 
   if (typeof parent === 'string') {
-    document.getElementById(parent).appendChild(element); // ici y a une erreur à cause du parent, je n'ai pas l'id d'option
+    document.getElementById(parent).appendChild(element); 
   } else {
     parent.appendChild(element);
   }
@@ -108,7 +108,5 @@ function selectElement () {
 
 
 //voir bouillonement
-
-
 
 //PROBLEME DE SELECTION : les parents se selectionne
